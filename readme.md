@@ -2,6 +2,6 @@
 
 - [x] Palindrome Checker
 - [x] Roman Numeral Converter
-- [ ] Caesars Cipher
+- [x] Caesars Cipher
 - [ ] Telephone Number Validator
 - [ ] Cash Register 
