@@ -3,5 +3,5 @@
 - [x] Palindrome Checker
 - [x] Roman Numeral Converter
 - [x] Caesars Cipher
-- [ ] Telephone Number Validator
+- [x] Telephone Number Validator
 - [ ] Cash Register 
