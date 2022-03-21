@@ -1,8 +1,50 @@
-var format =
-  /^([+]?1[\s]?)?((?:[(](?:[2-9]1[02-9]|[2-9][02-8][0-9])[)][\s]?)|(?:(?:[2-9]1[02-9]|[2-9][02-8][0-9])[\s.-]?)){1}([2-9]1[02-9]|[2-9][02-9]1|[2-9][02-9]{2}[\s.-]?){1}([0-9]{4}){1}$/;
-
 function telephoneCheck(str) {
-  return format.test(str);
+  str = str.replace(/\s+/g, "");
+  let numStr = str.match(/\d+/g).join("");
+
+  let hasTen = false;
+  let hasEleven = false;
+  let firstLetterOne = false;
+  let notOnlyNumber = false;
+  let correctParen = false;
+  let correctDash = false;
+
+  if (numStr.length === 10) {
+    hasTen = true;
+  } else if (numStr.length === 11) {
+    hasEleven = true;
+  }
+
+  if (numStr[0] === "1") {
+    firstLetterOne = true;
+    str = str.slice(1);
+  }
+  var parenFormat = /[()]+/g;
+  if (parenFormat.test(str)) {
+    notOnlyNumber = true;
+  }
+
+  var dashFormat = /[-]+/g;
+  if (dashFormat.test(str)) {
+    notOnlyNumber = true;
+  }
+
+  if (str[0] === "(" && str[4] === ")" && str[8] === "-") {
+    correctParen = true;
+  }
+  if (str[3] === "-" && str[7] === "-") {
+    correctDash = true;
+  }
+
+  if (!hasTen && !hasEleven) {
+    return false;
+  } else if (hasEleven && !firstLetterOne) {
+    return false;
+  } else if (notOnlyNumber && !correctDash && !correctParen) {
+    return false;
+  } else {
+    return true;
+  }
 }
 
-console.log(telephoneCheck("555-555-5555"));
+telephoneCheck("1 555-555-5555");
